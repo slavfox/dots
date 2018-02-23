@@ -1,0 +1,1 @@
+/home/kret/.config/fisherman/snakefish/functions/fish_right_prompt.fish

@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/pacaur -Qu | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" | awk '{$2=$2};1' | cut -d' ' -f3-6
