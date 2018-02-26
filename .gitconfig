@@ -73,6 +73,7 @@
     pullerino = pull
     pushini = push
     pulleroni = pull
+    v = describe --long --tags --dirty --always
 
 [fetch]
 	prune = true
