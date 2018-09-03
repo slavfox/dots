@@ -11,7 +11,6 @@ Plug 'gioele/vim-autoswap'
 
 """ Development """
 "Plug '~/clairvoyant.vim'
-Plug 'ashisha/image.vim'
 
 " Let's be sensible
 Plug 'tpope/vim-sensible'
@@ -106,6 +105,8 @@ Plug 'thaerkh/vim-workspace'
         Plug 'python-mode/python-mode', {'for': 'python'}
         let g:pymode_folding=0
         let g:pymode_syntax_print_as_function=1
+        let g:pymode_rope_complete_on_dot = 0
+
 
         " Jedi
         " Sometimes I get tired of Python mode, so I switch to using Jedi
@@ -137,18 +138,22 @@ Plug 'thaerkh/vim-workspace'
     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
     let g:deoplete#sources#clang#std = {'c': 'c11', 'cpp': 'c++11', 'objc': 'c11', 'objcpp': 'c++1z'}
 
-		" Make it work like supertab
-		inoremap <silent><expr> <TAB>
-				\ pumvisible() ? "\<C-n>" :
-				\ <SID>check_back_space() ? "\<TAB>" :
-				\ deoplete#mappings#manual_complete()
-				function! s:check_back_space() abort "{{{
-				let col = col('.') - 1
-				return !col || getline('.')[col - 1]  =~ '\s'
-		endfunction"}}}
+                " Make it work like supertab
+                inoremap <silent><expr> <TAB>
+                                \ pumvisible() ? "\<C-n>" :
+                                \ <SID>check_back_space() ? "\<TAB>" :
+                                \ deoplete#mappings#manual_complete()
+                                function! s:check_back_space() abort "{{{
+                                let col = col('.') - 1
+                                return !col || getline('.')[col - 1]  =~ '\s'
+                endfunction"}}}
 
-		inoremap <silent><expr> <S-TAB>
-				\ pumvisible() ? "\<C-p>" : "\<TAB>"
+                inoremap <silent><expr> <S-TAB>
+                                \ pumvisible() ? "\<C-p>" : "\<TAB>"
+
+    " GDScript
+
+    Plug 'calviken/vim-gdscript3'
 
     " Completions
 
@@ -241,7 +246,7 @@ set autoread
 
 set encoding=utf8
 filetype plugin indent on
-filetype plugin on	" Enables the ftplugin options
+filetype plugin on      " Enables the ftplugin options
 set autoindent
 syntax on
 set history=1000
