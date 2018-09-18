@@ -129,6 +129,12 @@ Plug 'thaerkh/vim-workspace'
 
     Plug 'dag/vim-fish'
 
+    " Haskell
+
+    Plug 'neovimhaskell/haskell-vim'
+    Plug 'eagletmt/ghcmod-vim'
+    Plug 'eagletmt/neco-ghc'
+
     " C / CPP
 
     set cino=l1,(0,u0,Ws,m1
