@@ -1,5 +1,10 @@
-""" Welcome to my .vimrc!
+" >implying you're not gonna screw with this within 15 minutes of cloning
+"  this to a new pc
 
+" Random helper functions
+function! StrStrip(input_string)
+    return substitute(a:input_string, '\n\+$', '', '') 
+endfunction
 
 """ Plug install plugins
 
@@ -102,11 +107,14 @@ Plug 'thaerkh/vim-workspace'
     " Python stuff
 
         " Python mode
-        Plug 'python-mode/python-mode', {'for': 'python'}
+        Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
         let g:pymode_folding=0
         let g:pymode_syntax_print_as_function=1
+        let g:pymode_doc = 1
+        let g:pymode_virtualenv = 1
+        let g:pymode_virtualenv_path = $VIRTUAL_ENV
+        let g:pymode_rope_goto_definition_bind = 'gd'
         let g:pymode_rope_complete_on_dot = 0
-
 
         " Jedi
         " Sometimes I get tired of Python mode, so I switch to using Jedi
@@ -135,6 +143,14 @@ Plug 'thaerkh/vim-workspace'
     Plug 'eagletmt/ghcmod-vim'
     Plug 'eagletmt/neco-ghc'
 
+    " Jinja
+    
+    Plug 'lepture/vim-jinja'
+
+    " Kivy
+
+    Plug 'farfanoide/vim-kivy'
+
     " C / CPP
 
     set cino=l1,(0,u0,Ws,m1
@@ -160,6 +176,15 @@ Plug 'thaerkh/vim-workspace'
     " GDScript
 
     Plug 'calviken/vim-gdscript3'
+
+    " Rust
+
+    Plug 'rust-lang/rust.vim'
+    Plug 'sebastianmarkow/deoplete-rust'
+    let g:deoplete#sources#rust#racer_binary=StrStrip(system('which racer'))
+    let g:deoplete#sources#rust#rust_source_path=
+        \   StrStrip(system('rustc --print sysroot')) 
+        \ . '/lib/rustlib/src/rust/src'
 
     " Completions
 
@@ -223,7 +248,7 @@ Plug 'thaerkh/vim-workspace'
 
     " Vimwiki
     Plug 'vimwiki/vimwiki'
-    let g:vimwiki_list = [{}, 
+    let g:vimwiki_list = [{},
             \ {'path': '~/Orbital/doc/src', 'path_html': '~/Orbital/doc/html'}]
 
 
@@ -417,8 +442,8 @@ set splitright
 :tnoremap <Esc><Esc> <C-\><C-n>
 
 " scroll the viewport faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y>
 
 " Python-like settings for sensible editing
 set tabstop=4
@@ -433,6 +458,7 @@ augroup vimrc_autocmds
     autocmd FileType python set nowrap
     autocmd FileType cpp set shiftwidth=2 tabstop=2
     augroup END
+
 
 " This has to be at the end for LeaderGuide to work
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
