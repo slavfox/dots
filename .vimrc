@@ -17,6 +17,9 @@ Plug 'gioele/vim-autoswap'
 """ Development """
 "Plug '~/clairvoyant.vim'
 
+" Activity tracking
+Plug 'wakatime/vim-wakatime'
+
 " Let's be sensible
 Plug 'tpope/vim-sensible'
 
@@ -61,13 +64,7 @@ Plug 'thaerkh/vim-workspace'
 
     " Tags
 
-        Plug 'majutsushi/tagbar'
-
-        " Has to be there for easytags
-        Plug 'xolox/vim-misc'
-        Plug 'xolox/vim-easytags'
-        " be quiet
-        let g:easytags_suppress_report = 1
+    " Plug 'majutsushi/tagbar'
 
     " Gitgutter
     Plug 'airblade/vim-gitgutter'
@@ -146,6 +143,11 @@ Plug 'thaerkh/vim-workspace'
     " Jinja
     
     Plug 'lepture/vim-jinja'
+
+    " Chuck
+
+    Plug 'Shougo/vimproc.vim'
+    Plug 'highwaynoise/chuck.vim'
 
     " Kivy
 

@@ -67,13 +67,14 @@
     # Thank you, CIA
     unmerged = ! git branch --no-merged | grep -v '\\*\\|master\\|develop'
     cleanup = ! git branch --merged | grep -v \"^* master$\" | grep -v \"^ master$\" | xargs git branch -d
-    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    aliases = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
     undo = reset HEAD~1
     pusherino = push
     pullerino = pull
     pushini = push
     pulleroni = pull
     v = describe --long --tags --dirty --always
+    fix-whitespace = ! find . -not \\( -name .svn -prune -o -name .git -prune \\) -type f -exec sed -i \"s/[[:space:]]*$//g\" \"{}\" \\; 
 
 [fetch]
 	prune = true
