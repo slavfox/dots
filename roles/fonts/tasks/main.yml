@@ -1,0 +1,7 @@
+- name: Copy Creep to .fonts
+  copy:
+    src: creep.otb
+    dest: "{{user_home}}/.fonts/"
+
+- name: Rehash fonts
+  command: "xset +fp {{user_home}}/.fonts/ fp rehash"

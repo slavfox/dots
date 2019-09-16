@@ -1,0 +1,12 @@
+- name: Install alacritty
+  become: true
+  pacman:
+    name:
+      - alacritty
+      - alacritty-terminfo
+    state: latest
+
+- name: Copy alacritty config
+  template:
+    src: alacritty.yml
+    dest: "{{user_config_dir}}/alacritty/"

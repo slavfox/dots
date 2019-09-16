@@ -1,0 +1,15 @@
+- name: Install hub
+  become: true
+  pacman:
+    name: hub
+    state: latest
+
+- name: Copy .gitconfig
+  template:
+    src: gitconfig
+    dest: "{{user_home}}/.gitconfig"
+
+- name: Copy global .gitignore
+  copy:
+    src: gitignore
+    dest: "{{user_home}}/.gitignore"

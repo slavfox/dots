@@ -1,0 +1,60 @@
+- name: Install fish, hub, sysstat, fortune-mod
+  become: true
+  pacman:
+    name:
+      - fish
+      - sysstat
+      - fortune-mod
+    state: latest
+
+- name: Install fisher, virtualfish
+  become: true
+  become_user: aur_builder
+  aur:
+    name:
+      - fisher
+      - python-virtualfish
+    skip_installed: true
+
+- name: Install snakefish for current user
+  command: fish -c fisher add slavfox/foxfish
+
+- name: Change shell to fish for current user
+  user:
+    name: "{{ansible_user_id}}"
+    shell: /usr/bin/fish
+
+- name: Set hybrid keybindings for current user
+  command: fish -c fish_hybrid_key_bindings
+
+- name: Import config.fish
+  template:
+    src: config.fish
+    dest: "{{user_config_dir}}/fish/config.fish"
+
+- name: Copy functions
+  copy:
+    src: "{{item}}"
+    dest: "{{user_config_dir}}/fish/functions/"
+  with_fileglob:
+    - functions/*
+
+- name: Set colors
+  template:
+    src: fish_variables
+    dest: "{{user_config_dir}}/fish/fish_variables"
+  with_fileglob:
+    - functions/*
+
+- name: Change root shell to fish
+  become: true
+  user:
+    name: root
+    shell: /usr/bin/fish
+
+- name: Install snakefish for root
+  command: fish -c fisher add slavfox/foxfish
+
+- name: Set hybrid keybindings for root
+  become: true
+  command: fish -c fish_hybrid_key_bindings

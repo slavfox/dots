@@ -1,7 +1,0 @@
-psutil
-flake8
-mypy
-neovim
-pyflakes
-pylint
-pywal

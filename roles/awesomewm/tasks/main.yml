@@ -1,0 +1,31 @@
+- name: Install awesome deps
+  become: yes
+  pacman:
+    name:
+      - awesome
+      - compton
+      - physlock
+      - unclutter
+      - rofi
+    state: latest
+
+- name: Copy .xinitrc
+  copy:
+    src: xinitrc
+    dest: "{{user_home}}/.xinitrc"
+
+- name: Copy compton config
+  copy:
+    src: compton.conf
+    dest: "{{user_config_dir}}/"
+
+- name: Copy awesome config
+  copy:
+    src: awesome
+    dest: "{{user_config_dir}}/awesome"
+
+- name: Copy awesome colordefs
+  template:
+    src: colors.lua
+    dest: "{{user_config_dir}}/awesome/"
+

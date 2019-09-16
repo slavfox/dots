@@ -1,0 +1,51 @@
+- name: Create ansible user
+  become: yes
+  user: 
+    name: aur_builder
+
+- name: Set up ansible user
+  become: yes
+  lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    state: present
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    validate: /usr/sbin/visudo -cf %s
+    create: yes
+
+- name: System update
+  become: yes
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install yay
+  become: yes
+  become_user: aur_builder
+  aur:
+    name: yay
+    use: makepkg
+    skip_installed: true
+
+- name: Install pacman requirements
+  become: yes
+  pacman:
+    name:
+      - openssh
+      - the_silver_searcher
+    state: latest
+
+- name: Add our preferred locale to locale.gen
+  become: true
+  lineinfile:
+    path: /etc/locale.gen
+    line: "{{locale}} UTF-8"
+    state: present
+
+- name: Run locale-gen
+  become: true
+  command: locale-gen
+
+- name: Set our preferred locale
+  become: true
+  command: "localectl set-locale LANG={{locale}}"
+

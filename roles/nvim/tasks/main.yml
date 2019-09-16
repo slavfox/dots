@@ -1,0 +1,45 @@
+- name: Get rid of vim if exists
+  become: true
+  pacman:
+    name: vim
+    state: absent
+    extra_args: --recursive
+
+- name: Install nvim
+  become: true
+  pacman:
+    name: neovim
+    state: present
+
+- name: Install pynvim
+  become: true
+  pacman:
+    name: python-pynvim
+    state: present
+
+- name: Save nvim binary path
+  command: which nvim
+  register: nvim_path
+
+- name: Create vim symlink
+  become: true
+  file:
+    path: /usr/bin/vim
+    src: "{{nvim_path.stdout}}"
+    state: link
+
+- name: Create vi symlink
+  become: true
+  file:
+    path: /usr/bin/vi
+    src: "{{nvim_path.stdout}}"
+    state: link
+
+- name: Copy init.vim
+  copy:
+    src: init.vim
+    dest: "{{user_config_dir}}/nvim/"
+
+- name: Install nvim plugins
+  command: nvim --headless +PlugInstall +UpdateRemotePlugins +qa
+

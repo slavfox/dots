@@ -1,0 +1,16 @@
+- name: Install ranger and w3m
+  become: true
+  pacman:
+    name: 
+      - ranger
+      - w3m
+
+- name: Copy rc.conf
+  copy:
+    src: rc.conf
+    dest: "{{user_config_dir}}/ranger/"
+
+- name: Copy scope.sh
+  copy:
+    src: scope.sh
+    dest: "{{user_config_dir}}/ranger/"
