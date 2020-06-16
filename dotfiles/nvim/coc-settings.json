@@ -1,0 +1,12 @@
+{
+    "languageserver": {
+        "rls": {
+            "command": "rustup",
+            "args": ["run", "nightly", "rls"],
+            "filetypes": ["rust"],
+            "settings": {},
+            "enable": true,
+            "trace.server": "verbose"
+        }
+    }
+}

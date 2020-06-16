@@ -35,18 +35,16 @@
     src: "{{dotfiles_dir}}/dotfiles/fish/config.fish"
     path: "{{user_config_dir}}/fish/config.fish"
 
-- name: Import fish_variables
+- name: Copy functions
   file:
     state: link
-    src: "{{dotfiles_dir}}/dotfiles/fish/fish_variables"
-    path: "{{user_config_dir}}/fish/fish_variables"
-
-- name: Copy functions
-  copy:
     src: "{{item}}"
-    dest: "{{user_config_dir}}/fish/functions/"
+    dest: "{{user_config_dir}}/fish/functions/{{item | basename}}"
   with_fileglob:
-    - functions/*
+    - "{{dotfiles_dir}}/dotfiles/fish/functions/*.fish"
+
+- name: Set colors
+  command: "fish {{dotfiles_dir}}/scripts/set_fish_colors.fish"
 
 - name: Change root shell to fish
   become: true

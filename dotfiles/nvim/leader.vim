@@ -12,6 +12,27 @@ let g:which_key_map = {
 
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
+xnoremap <leader>cf <Plug>(coc-format-selected)
+xnoremap <leader>ca <Plug>(coc-codeaction-selected)
+
+let g:which_key_map.c = {
+  \ 'name': '+code',
+  \ 'r': ['<Plug>(coc-rename)', 'rename'],
+  \ 'f': ['<Plug>(coc-format-selected)', 'format-selected'],
+  \ 'a': ['<Plug>(coc-codeaction-selected)', 'codeaction-selected'],
+  \ 'c': ['<Plug>(coc-fix-current)', 'correct-problem'],
+  \ '[': [':CocPrev', 'prev'],
+  \ ']': [':CocNext', 'next'],
+  \ 'l': {
+  \   'name': '+list',
+  \   'c': [':CocList commands', 'commands'],
+  \   'd': [':CocList diagnostics', 'diagnostics'],
+  \   'e': [':CocList extensions', 'extensions'],
+  \   'o': [':CocList outline', 'outline'],
+  \   's': [':CocList -I symbols', 'symbols'],
+  \   'l': [':CocListResume', 'resume-last'],
+  \   },
+  \ }
 
 let g:which_key_map.g = {
   \ 'name': '+git',
@@ -34,6 +55,7 @@ let g:which_key_map.v = {
   \ 's': [':e ~/.config/nvim/settings.vim', 'settings.vim'],
   \ 'k': [':e ~/.config/nvim/keymap.vim', 'keymap.vim'],
   \ 'l': [':e ~/.config/nvim/leader.vim', 'leader.vim'],
+  \ 'r': [':source ~/.config/nvim/init.vim', 'reload-config'],
   \ 'v': {
     \ 'name': '+plug',
     \ 'i': [':PlugInstall', 'install'],

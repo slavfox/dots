@@ -4,6 +4,10 @@ filetype plugin indent on
 syntax on
 set title
 set ttyfast
+set hidden
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
 
 " Colors
 set background=dark
@@ -37,4 +41,7 @@ set completeopt=longest,menuone,preview
 set splitbelow
 set splitright
 
+set expandtab
+set tabstop=4
+set shiftwidth=4
 " vim: set ft=vim et sw=2 ts=2:

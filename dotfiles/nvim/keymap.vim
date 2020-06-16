@@ -30,4 +30,59 @@ cnoremap w!! w !sudo tee > /dev/null %
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" coc specifics {{{
+
+" Make coc work like supertab
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Jump through coc diagnostics
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Code navigation
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+
+" Function and class text objects
+xnoremap if <Plug>(coc-funcobj-i)
+onoremap if <Plug>(coc-funcobj-i)
+xnoremap af <Plug>(coc-funcobj-a)
+onoremap af <Plug>(coc-funcobj-a)
+xnoremap ic <Plug>(coc-classobj-i)
+onoremap ic <Plug>(coc-classobj-i)
+xnoremap ac <Plug>(coc-classobj-a)
+onoremap ac <Plug>(coc-classobj-a)
+
+" Show docs
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+augroup cocgroup
+  autocmd!
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" }}}
+
 " vim: set ft=vim et sw=2 ts=2:

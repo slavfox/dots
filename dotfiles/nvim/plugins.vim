@@ -73,6 +73,22 @@ call plug#begin('~/.vim/plugged')
   " Git change marks in gutter
   Plug 'airblade/vim-gitgutter'
 
+" Highlighting
+  Plug 'dag/vim-fish'
+  Plug 'cespare/vim-toml'
+
+" Completions
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:coc_global_extensions = [
+  \ 'coc-lists', 
+  \ 'coc-json',
+  \ 'coc-vimlsp', 
+  \ 'coc-rls',
+  \ 'coc-ultisnips'
+  \ ]
 
 " Other random stuff
 
