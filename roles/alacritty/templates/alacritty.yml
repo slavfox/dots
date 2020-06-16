@@ -77,15 +77,6 @@ scrolling:
   # scrollback is enabled (history > 0).
   multiplier: 3
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
-
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
 
@@ -172,32 +163,7 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-colors: {
-  'primary': {
-    'background': '0x{{colors.primary.background}}', 
-    'foreground': '0x{{colors.primary.foreground}}'
-  },
-  'normal': {
-    'black': '0x{{colors.normal.black}}', 
-    'red': '0x{{colors.normal.red}}', 
-    'green': '0x{{colors.normal.green}}', 
-    'yellow': '0x{{colors.normal.yellow}}', 
-    'blue': '0x{{colors.normal.blue}}', 
-    'magenta': '0x{{colors.normal.magenta}}', 
-    'cyan': '0x{{colors.normal.cyan}}', 
-    'white': '0x{{colors.normal.white}}'
-  }, 
-  'bright': {
-    'black': '0x{{colors.bright.black}}', 
-    'red': '0x{{colors.bright.red}}', 
-    'green': '0x{{colors.bright.green}}', 
-    'yellow': '0x{{colors.bright.yellow}}', 
-    'blue': '0x{{colors.bright.blue}}',
-    'magenta': '0x{{colors.bright.magenta}}', 
-    'cyan': '0x{{colors.bright.cyan}}', 
-    'white': '0x{{colors.bright.white}}'
-  }
-}
+colors: {{colors}}
 
 # Visual Bell
 #

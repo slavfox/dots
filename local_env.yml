@@ -2,8 +2,9 @@
   hosts: local
   roles:
     - {role: bootstrap, tags: ['bootstrap']}
+    - {role: git, tags: ['git']}
     - {role: ranger, tags: ['ranger']}
     - {role: fish, tags: ['fish']}
     - {role: nvim, tags: ['nvim']}
     - {role: alacritty, tags: ['alacritty']}
-    - {role: awesomewm, tags: ['awesome']}
+    - {role: awesomewm, tags: ['never', 'awesome']}

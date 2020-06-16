@@ -5,12 +5,14 @@
       - ranger
       - w3m
 
-- name: Copy rc.conf
-  copy:
-    src: rc.conf
-    dest: "{{user_config_dir}}/ranger/"
+- name: Symlink rc.conf
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/ranger/rc.conf"
+    dest: "{{user_config_dir}}/ranger/rc.conf"
 
-- name: Copy scope.sh
-  copy:
-    src: scope.sh
-    dest: "{{user_config_dir}}/ranger/"
+- name: Symlink scope.sh
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/ranger/scope.sh"
+    dest: "{{user_config_dir}}/ranger/scope.sh"

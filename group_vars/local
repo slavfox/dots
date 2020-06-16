@@ -3,32 +3,37 @@
 user_home: "{{ '~' | expanduser }}"
 user_config_dir: "{{ user_home }}/.config"
 dotfiles_dir: "{{playbook_dir}}"
-locale: "en_DK.UTF-8"
+locale: "en_IE.UTF-8"
 
 colors:
   # Default colors
   primary:
-    background: '2d2b33'
-    foreground: 'feffff'
+    background: '0x282c34'
+    foreground: '0xabb2bf'
+
+  # Cursor colors
+  cursor:
+    background: '0xabb2bf'
+    foreground: '0x282c34'
 
   # Normal colors
   normal:
-    black:   '383640'
-    red:     'a09ebb'
-    green:   '92b6b1'
-    yellow:  'edaf97'
-    blue:    '8789c0'
-    magenta: 'e47b66'
-    cyan:    '6b9080'
-    white:   '969a97'
+    black:   '0x282c34'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xe5c07b'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
 
   # Bright colors
   bright:
-    black:   '5a5353'
-    red:     'a09ebb'
-    green:   '92b6b1'
-    yellow:  'edaf97'
-    blue:    '8789c0'
-    magenta: 'e47b66'
-    cyan:    '6b9080'
-    white:   'f3e8ee'
+    black:   '0x3e4452'
+    red:     '0xbe5046'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0x5c6370'

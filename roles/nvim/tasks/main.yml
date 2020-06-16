@@ -35,10 +35,11 @@
     src: "{{nvim_path.stdout}}"
     state: link
 
-- name: Copy init.vim
-  copy:
-    src: init.vim
-    dest: "{{user_config_dir}}/nvim/"
+- name: Symlink init.vim
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/nvim"
+    path: "{{user_config_dir}}/nvim"
 
 - name: Install nvim plugins
   command: nvim --headless +PlugInstall +UpdateRemotePlugins +qa

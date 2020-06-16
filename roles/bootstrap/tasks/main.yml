@@ -3,6 +3,15 @@
   user: 
     name: aur_builder
 
+- name: Install pacman requirements
+  become: yes
+  pacman:
+    name:
+      - base-devel
+      - openssh
+      - the_silver_searcher
+    state: latest
+
 - name: Set up ansible user
   become: yes
   lineinfile:
@@ -25,14 +34,6 @@
     name: yay
     use: makepkg
     skip_installed: true
-
-- name: Install pacman requirements
-  become: yes
-  pacman:
-    name:
-      - openssh
-      - the_silver_searcher
-    state: latest
 
 - name: Add our preferred locale to locale.gen
   become: true

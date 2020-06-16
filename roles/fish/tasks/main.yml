@@ -1,10 +1,11 @@
-- name: Install fish, hub, sysstat, fortune-mod
+- name: Install fish, hub, sysstat, fortune-mod, inetutils
   become: true
   pacman:
     name:
       - fish
       - sysstat
       - fortune-mod
+      - inetutils
     state: latest
 
 - name: Install fisher, virtualfish
@@ -20,6 +21,7 @@
   command: fish -c fisher add slavfox/foxfish
 
 - name: Change shell to fish for current user
+  become: true
   user:
     name: "{{ansible_user_id}}"
     shell: /usr/bin/fish
@@ -28,21 +30,21 @@
   command: fish -c fish_hybrid_key_bindings
 
 - name: Import config.fish
-  template:
-    src: config.fish
-    dest: "{{user_config_dir}}/fish/config.fish"
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/fish/config.fish"
+    path: "{{user_config_dir}}/fish/config.fish"
+
+- name: Import fish_variables
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/fish/fish_variables"
+    path: "{{user_config_dir}}/fish/fish_variables"
 
 - name: Copy functions
   copy:
     src: "{{item}}"
     dest: "{{user_config_dir}}/fish/functions/"
-  with_fileglob:
-    - functions/*
-
-- name: Set colors
-  template:
-    src: fish_variables
-    dest: "{{user_config_dir}}/fish/fish_variables"
   with_fileglob:
     - functions/*
 

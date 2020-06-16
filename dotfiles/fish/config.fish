@@ -1,19 +1,18 @@
 set -gx EDITOR vim
 set -gx VISUAL vim
-set -gx PATH "$HOME/dots/bin" $PATH
-set -gx PATH "$HOME/.local/bin" $PATH
-set -gx PATH "$HOME/.cargo/bin" $PATH
-set -gx PATH $PATH "$HOME/bin"
+set -gx GHCUP_INSTALL_BASE_PREFIX "~"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx SHELL (which fish)
 set -gx BROWSER /usr/bin/firefox
 hub alias -s | source
 
 # ipython
-set -gx PYTHONSTARTUP {{dotfiles_dir}}/python_startup.py
+set -gx PYTHONSTARTUP /home/fox/dots/python_startup.py
 
 # virtualenvwrapper
 set -gx VIRTUALFISH_HOME "$HOME/.virtualenvs"
 set -gx WORKON_HOME "$HOME/.virtualenvs"
 set -gx VIRTUALFISH_DEFAULT_PYTHON "python"
-python -m virtualfish | source
+status --is-interactive; and source (pyenv init -|psub)
+source ("/usr/bin/starship" init fish --print-full-init | psub)
+

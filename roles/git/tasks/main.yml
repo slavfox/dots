@@ -9,7 +9,8 @@
     src: gitconfig
     dest: "{{user_home}}/.gitconfig"
 
-- name: Copy global .gitignore
-  copy:
-    src: gitignore
-    dest: "{{user_home}}/.gitignore"
+- name: Symlink global .gitignore
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/git/gitignore"
+    path: "{{user_home}}/.gitignore"
