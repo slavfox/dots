@@ -32,18 +32,6 @@ nnoremap <C-y> 3<C-y>
 
 " coc specifics {{{
 
-" Make coc work like supertab
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 " Jump through coc diagnostics
 nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
 nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -66,6 +54,13 @@ onoremap ac <Plug>(coc-classobj-a)
 
 " Show docs
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Switch (`j`, `k`) and (`gj`, `gk`) around in normal mode (so that it still
+" works as normal in operator pending mode)
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

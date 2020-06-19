@@ -4,10 +4,9 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" === PLUGINS ===
 call plug#begin('~/.vim/plugged')
 
-" Base tweaks
+" === Base tweaks ===
   " Automatic swapfile management
   Plug 'gioele/vim-autoswap'
 
@@ -17,7 +16,8 @@ call plug#begin('~/.vim/plugged')
   " Autodetect indentation
   Plug 'tpope/vim-sleuth'
 
-" Workflow
+
+" === Workflow ===
   " Persistent sessions
   Plug 'thaerkh/vim-workspace'
     let g:workspace_autosave = 0
@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugged')
     let g:which_key_ignore_invalid_key = 0
 
 
-" UI
+" === UI ===
   " Nice start screen with recent files etc
   Plug 'mhinz/vim-startify'
   
@@ -73,13 +73,18 @@ call plug#begin('~/.vim/plugged')
   " Git change marks in gutter
   Plug 'airblade/vim-gitgutter'
 
-" Highlighting
+
+" === Highlightins ===
   Plug 'dag/vim-fish'
   Plug 'cespare/vim-toml'
 
-" Completions
+
+" === Completions ===
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+
+  Plug 'ervandew/supertab'
+  let g:SuperTabDefaultCompletionType = "<c-n>"
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = [
@@ -87,15 +92,27 @@ call plug#begin('~/.vim/plugged')
   \ 'coc-json',
   \ 'coc-vimlsp', 
   \ 'coc-rls',
+  \ 'coc-rls',
+  \ 'coc-python',
   \ 'coc-ultisnips'
   \ ]
 
-" Other random stuff
 
+" === Misc ===
   " Time tracking
   Plug 'wakatime/vim-wakatime'
 
+  " Notes
+  if !empty(glob('~/.config/nvim/vimwiki_index.vim'))
+    source ~/.config/nvim/vimwiki_index.vim
+  endif
+  Plug 'vimwiki/vimwiki'
+
+" === Local, in-development plugins ===
+  if !empty(glob('~/.config/nvim/dev_plugins.vim'))
+    source ~/.config/nvim/dev_plugins.vim
+  endif
 
 call plug#end()
 
-" vim: set ft=vim et sw=2 ts=2:
+" vim: set ft=vim et sw=2 ts=2 fdm=indent:

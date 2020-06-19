@@ -36,7 +36,7 @@ set autochdir
 set nu
 set rnu
 
-set completeopt=longest,menuone,preview
+set completeopt=longest,menu,preview
 
 set splitbelow
 set splitright
@@ -44,4 +44,6 @@ set splitright
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+let g:python3_host_prog = '/usr/bin/python'
 " vim: set ft=vim et sw=2 ts=2:

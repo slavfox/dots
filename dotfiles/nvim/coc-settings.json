@@ -1,4 +1,10 @@
 {
+    "suggest.enablePreview": true,
+    "suggest.enablePreselect": true,
+    "suggest.noselect": false,
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.virtualText": true,
+    "python.jediEnabled": false,
     "languageserver": {
         "rls": {
             "command": "rustup",
@@ -7,6 +13,19 @@
             "settings": {},
             "enable": true,
             "trace.server": "verbose"
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+            "rootPatterns": [".ccls-root", "compile_commands.json"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": ".ccls-cache"
+                },
+                "client": {
+                    "snippetSupport": true
+                }
+            }
         }
     }
 }
