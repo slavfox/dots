@@ -1,20 +1,14 @@
 - name: Get rid of vim if exists
-  when: ansible_facts['distribution'] == "Archlinux"
   become: true
   pacman:
     name: vim
     state: absent
     extra_args: --recursive
 
-- name: Install nvim
-  when: ansible_facts['distribution'] == "Archlinux"
+- name: Install nvim, pynvim, nodejs
   become: true
   pacman:
-    name: neovim
-    state: present
-
-- name: Install pynvim
-  become: true
-  pacman:
-    name: python-pynvim
-    state: present
+    name:
+      - neovim
+      - pynvim
+      - nodejs

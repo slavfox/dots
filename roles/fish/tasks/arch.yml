@@ -1,4 +1,4 @@
-- name: Install fish, hub, sysstat, fortune-mod, inetutils
+- name: Install fish, hub, sysstat, fortune-mod, inetutils, pyenv
   become: true
   pacman:
     name:
@@ -6,13 +6,15 @@
       - sysstat
       - fortune-mod
       - inetutils
+      - pyenv
 
-- name: Install fisher, virtualfish, starship
+- name: Install fisher, virtualfish, starship, pfetch
   become: true
   become_user: aur_builder
   aur:
     name:
       - fisher
-      - python-virtualfish
+      - virtualfish
       - starship
+      - pfetch
     skip_installed: true

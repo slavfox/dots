@@ -17,6 +17,8 @@ en_US.UTF-8 UTF-8
 pl_PL.UTF-8 UTF-8
 EOF
 
+locale-gen
+
 echo "LANG=en_IE.UTF-8" > /etc/locale.conf
 echo "KEYMAP=pl" > /etc/vconsole.conf
 
