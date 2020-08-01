@@ -10,7 +10,7 @@
     editor = nvim
 	whitespace = trailing-space,space-before-tab
 	autocrlf = input
-	excludesfile = {{user_home}}/.gitignore
+	excludesfile = ~/.gitignore
 
 [color]
 	ui = true
@@ -81,3 +81,6 @@
 
 [log]
 	decorate = full
+
+[include]
+    path = ~/.git-user

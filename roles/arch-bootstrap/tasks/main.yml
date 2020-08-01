@@ -1,6 +1,6 @@
 - name: Create ansible user
   become: yes
-  user: 
+  user:
     name: aur_builder
 
 - name: Install pacman requirements
@@ -10,7 +10,6 @@
       - base-devel
       - openssh
       - the_silver_searcher
-    state: latest
 
 - name: Set up ansible user
   become: yes

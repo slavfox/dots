@@ -1,5 +1,13 @@
-" Toggle between line numbers
-nnoremap <silent> <F4> :set nornu!<CR>
+" Switch (`j`, `k`) and (`gj`, `gk`) around in normal and visual mode (so that
+" it still works as normal in operator pending mode)
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+vnoremap j gj
+vnoremap k gk
+vnoremap gj j
+vnoremap gk k
 
 " Focus or create a split in given direction
 function! WinMove(key)
@@ -54,13 +62,6 @@ onoremap ac <Plug>(coc-classobj-a)
 
 " Show docs
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" Switch (`j`, `k`) and (`gj`, `gk`) around in normal mode (so that it still
-" works as normal in operator pending mode)
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

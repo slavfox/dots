@@ -1,9 +1,5 @@
-- name: Install ranger and w3m
-  become: true
-  pacman:
-    name: 
-      - ranger
-      - w3m
+- import_tasks: arch.yml
+  when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
 - name: Symlink rc.conf
   file:

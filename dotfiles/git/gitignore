@@ -187,6 +187,6 @@ Session.vim
 .netrwhist
 # auto-generated tag files
 tags
-
+.wakatime-project
 # Workspace plugin
 .undodir/

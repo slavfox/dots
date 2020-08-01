@@ -1,0 +1,6 @@
+- name: Install ranger and w3m
+  become: true
+  pacman:
+    name:
+      - ranger
+      - w3m

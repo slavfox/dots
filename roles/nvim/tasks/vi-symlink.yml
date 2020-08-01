@@ -1,0 +1,18 @@
+- name: Save nvim binary path
+  shell: which nvim
+  register: nvim_path
+  check_mode: no
+
+- name: Create vim symlink
+  become: true
+  file:
+    path: /usr/bin/vim
+    src: "{{nvim_path.stdout}}"
+    state: link
+
+- name: Create vi symlink
+  become: true
+  file:
+    path: /usr/bin/vi
+    src: "{{nvim_path.stdout}}"
+    state: link

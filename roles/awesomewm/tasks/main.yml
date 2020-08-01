@@ -1,13 +1,5 @@
-- name: Install awesome deps
-  become: yes
-  pacman:
-    name:
-      - awesome
-      - compton
-      - physlock
-      - unclutter
-      - rofi
-    state: latest
+- import_tasks: arch.yml
+  when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
 - name: Copy .xinitrc
   copy:

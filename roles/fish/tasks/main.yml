@@ -1,29 +1,18 @@
-- name: Install fish, hub, sysstat, fortune-mod, inetutils
-  become: true
-  pacman:
-    name:
-      - fish
-      - sysstat
-      - fortune-mod
-      - inetutils
-    state: latest
-
-- name: Install fisher, virtualfish
-  become: true
-  become_user: aur_builder
-  aur:
-    name:
-      - fisher
-      - python-virtualfish
-    skip_installed: true
-
-- name: Install snakefish for current user
-  command: fish -c fisher add slavfox/foxfish
+- import_tasks: arch.yml
+  when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
 - name: Change shell to fish for current user
+  when: ansible_facts['distribution'] != "NixOS"
   become: true
   user:
     name: "{{ansible_user_id}}"
+    shell: /usr/bin/fish
+
+- name: Change root shell to fish
+  when: ansible_facts['distribution'] != "NixOS"
+  become: true
+  user:
+    name: root
     shell: /usr/bin/fish
 
 - name: Set hybrid keybindings for current user
@@ -34,6 +23,12 @@
     state: link
     src: "{{dotfiles_dir}}/dotfiles/fish/config.fish"
     path: "{{user_config_dir}}/fish/config.fish"
+
+- name: Import starship.toml
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/starship.toml"
+    path: "{{user_config_dir}}/starship.toml"
 
 - name: Copy functions
   file:
@@ -46,15 +41,20 @@
 - name: Set colors
   command: "fish {{dotfiles_dir}}/scripts/set_fish_colors.fish"
 
-- name: Change root shell to fish
-  become: true
-  user:
-    name: root
-    shell: /usr/bin/fish
-
-- name: Install snakefish for root
-  command: fish -c fisher add slavfox/foxfish
-
 - name: Set hybrid keybindings for root
   become: true
   command: fish -c fish_hybrid_key_bindings
+
+- name: Import root.config.fish
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/fish/root.config.fish"
+    path: "/root/.config/fish/config.fish"
+
+- name: Import root starship.toml
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/starship.toml"
+    path: "/root/.config/starship.toml"

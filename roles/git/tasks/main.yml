@@ -1,13 +1,17 @@
-- name: Install hub
-  become: true
-  pacman:
-    name: hub
-    state: latest
+- import_tasks: arch.yml
+  when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
-- name: Copy .gitconfig
-  template:
-    src: gitconfig
-    dest: "{{user_home}}/.gitconfig"
+- name: Symlink .gitconfig
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/git/gitconfig"
+    path: "{{user_home}}/.gitconfig"
+
+- name: Copy .git-user
+  copy:
+    src: git-user
+    dest: "{{user_home}}/.git-user"
+    force: no
 
 - name: Symlink global .gitignore
   file:

@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+from getpass import getuser
+import argparse
+if getuser() != "fox":
+    print("This must be run as `fox`! Did you accidentally use `sudo`?")
+    exit(1)
+
+parser = argparse.ArgumentParser(
+    description="Sync system configuration"
+)
+parser.add_argument('-d', '--dry-run', action='store_true')
+parser.add_argument('-r', '--sync-remotes', action='store_true')
+parser.add_argument('-v', '--verbose', action='store_true')
+
+args = parser.parse_args()
+
+import os
+import subprocess
+import socket
+from pathlib import Path
+import sys
+
+DOTS_DIR = Path(__file__).resolve().parent.parent
+
+sys.path.insert(0, str(DOTS_DIR))
+from config import Hosts
+
+hostname = socket.gethostname()
+
+try:
+    host_roles = getattr(Hosts, hostname)
+except AttributeError:
+    raise ValueError(f"{hostname} doesn't have any configured roles!")
+    sys.exit(1)
+
+def make_playbook(roles):
+    playbook_path = DOTS_DIR / "local_playbook.yml"
+    with playbook_path.open("w") as playbook:
+        playbook.write("- hosts: localhost\n")
+        playbook.write("  roles:\n")
+        for role in roles:
+            playbook.write(f"    - {role}\n")
+    return str(playbook_path)
+
+command = ["ansible-playbook", "-K"]
+if args.verbose:
+    command.append("-v")
+if args.dry_run:
+    command.append("-C")
+if args.sync_remotes:
+    raise ValueError("Syncing remotes isn't supported yet.")
+
+command.append(make_playbook(host_roles))
+
+env = os.environ.copy()
+env["ANSIBLE_LOCALHOST_WARNING"] = "False"
+env["ANSIBLE_LIBRARY"] = str(DOTS_DIR / "library")
+
+command += ["-i", str(DOTS_DIR / "inventory.ini")]
+
+
+print(f"Running: {command}")
+print(f"Roles: {host_roles}")
+subprocess.run(
+    command, env=env
+)

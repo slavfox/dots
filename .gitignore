@@ -1,4 +1,4 @@
 .idea/
 dotfiles/nvim/dev_plugins.vim
 dotfiles/nvim/vimwiki_index.vim
-
+local_playbook.yml

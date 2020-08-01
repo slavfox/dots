@@ -1,0 +1,9 @@
+- name: Install awesome deps
+  become: yes
+  pacman:
+    name:
+      - awesome
+      - compton
+      - physlock
+      - unclutter
+      - rofi

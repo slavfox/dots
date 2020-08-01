@@ -1,10 +1,5 @@
-- name: Install alacritty
-  become: true
-  pacman:
-    name:
-      - alacritty
-      - alacritty-terminfo
-    state: latest
+- import_tasks: arch.yml
+  when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
 - name: Copy alacritty config
   template:

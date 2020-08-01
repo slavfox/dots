@@ -1,0 +1,5 @@
+- name: Install alacritty
+  become: true
+  pacman:
+    name:
+      - alacritty
