@@ -13,5 +13,6 @@ sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 
 sudo nixos-rebuild switch --upgrade
 
-cd ~/dots
-./sync.sh
+nix-channel -iA nixos-ansible
+
+~/dots/bin/sync-dots

@@ -30,6 +30,11 @@
     src: "{{dotfiles_dir}}/dotfiles/starship.toml"
     path: "{{user_config_dir}}/starship.toml"
 
+- name: Make functions dir
+  file:
+    state: directory
+    path: "{{user_config_dir}}/fish/functions/"
+
 - name: Copy functions
   file:
     state: link
