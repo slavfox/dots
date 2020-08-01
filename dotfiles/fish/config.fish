@@ -17,11 +17,16 @@ set -gx FZF_CTRL_T_COMMAND 'ag --hidden --ignore .git -g ""'
 
 add_to_path ~/bin/ ~/dots/bin/ ~/.local/bin/
 add_to_path ~/.cargo/bin/
-add_to_path ~/.gem/ruby/*/bin/
+if test -d ~/.gem/ruby/
+    add_to_path ~/.gem/ruby/*/bin/
+end
 add_to_path ~/.npm-global/bin/
 add_to_path ~/.cabal/bin/
 add_to_path ~/.ghcup/bin/
 
-status --is-interactive; and source (pyenv init -|psub)
-source ("/usr/bin/starship" init fish --print-full-init | psub)
+if type -q pyenv
+    status --is-interactive; and source (pyenv init -|psub)
+end
+
+source (starship init fish --print-full-init | psub)
 
