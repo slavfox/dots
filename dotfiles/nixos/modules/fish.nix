@@ -5,6 +5,8 @@
     fish
     starship
     gitAndTools.hub
+    # fish-greeting
+    pfetch
   ];
 
   programs.fish.enable = true;
