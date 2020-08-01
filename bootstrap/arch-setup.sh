@@ -3,6 +3,7 @@ if [ -z "$1" ]; then
     echo "You must pass in the intended hostname!"
     exit 1
 fi
+set -e
 PS4="\n\033[1;33m::\033[0m "; set -x
 
 # Basic stuff

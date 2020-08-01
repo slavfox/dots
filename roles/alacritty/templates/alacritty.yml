@@ -34,7 +34,7 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 15 
+    x: 15
     y: 15
 
   # Spread additional padding evenly around the terminal content.
@@ -99,14 +99,14 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: creep 
+    family: Cozette
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
   bold:
-    family: creep 
+    family: Cozette
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
@@ -118,7 +118,7 @@ font:
 
   # Italic font face
   italic:
-    family: creep 
+    family: Cozette
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
@@ -129,7 +129,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 4 
+  size: 4
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -142,7 +142,7 @@ font:
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: -1
+    y: 0
 
   # Thin stroke font rendering (macOS only)
   #
