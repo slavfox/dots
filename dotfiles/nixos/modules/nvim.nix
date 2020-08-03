@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     nodejs
+    python3
     python38Packages.pynvim
   ];
   environment.variables.EDITOR = "nvim";
