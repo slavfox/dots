@@ -22,17 +22,26 @@
     state: link
     force: true
     src: "{{dotfiles_dir}}/configs/ishtar/gollum/config.rb"
-    path: "/var/gollum/config.rb"
+    path: /var/gollum/config.rb
+
+- name: Make gollum install directory
+  file:
+    path: /var/gollum/gem/
+    state: directory
 
 - name: Install gollum
   become: true
   gem:
     name: gollum
+    user_install: no
+    install_dir: /var/gollum/gem
 
 - name: Install omnigollum
   become: true
   gem:
     name: omnigollum
+    user_install: no
+    install_dir: /var/gollum/gem
 
 - name: Make user systemd units directory
   file:

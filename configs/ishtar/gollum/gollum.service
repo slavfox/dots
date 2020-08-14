@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=%i
-ExecStart=/usr/bin/gollum "/var/gollum/wiki"
+ExecStart=/var/gollum/gem/bin/gollum "/var/gollum/wiki"
 Restart=on-abort
 
 [Install]
