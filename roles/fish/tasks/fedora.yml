@@ -1,6 +1,7 @@
-- name: Install fish, starship
+- name: Install fish, starship, hub
   become: true
   dnf:
     name:
       - fish
       - starship
+      - hub
