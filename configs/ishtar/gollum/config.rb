@@ -16,7 +16,7 @@ Precious::App.set(:wiki_options, wiki_options)
 Precious::App.set(:gollum_path, '/var/gollum/wiki')
 
 Gollum::Hook.register(:post_commit, :hook_id) do |committer, sha1|
-        system('git push')
+    system('git push')
 end
 
 options = {

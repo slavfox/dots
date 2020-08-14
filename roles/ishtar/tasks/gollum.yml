@@ -11,6 +11,7 @@
       - make
       - cmake
       - gcc
+      - gcc-c++
       - openssl
       - libgit2
       - libgit2-devel
