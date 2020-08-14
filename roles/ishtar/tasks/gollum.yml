@@ -8,6 +8,7 @@
       - libicu-devel
       - zlib
       - zlib-devel
+      - make
 
 - name: Make gollum directory
   become: true
