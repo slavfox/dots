@@ -19,6 +19,10 @@
 - name: Set hybrid keybindings for current user
   command: fish -c fish_hybrid_key_bindings
 
+- name: Set hybrid keybindings for root
+  become: true
+  command: fish -c fish_hybrid_key_bindings
+
 - name: Import config.fish
   file:
     state: link
@@ -46,11 +50,6 @@
 
 - name: Set colors
   command: "fish {{dotfiles_dir}}/scripts/set_fish_colors.fish"
-
-- name: Set hybrid keybindings for root
-  become: true
-  command: fish -c fish_hybrid_key_bindings
-
 - name: Import root config.fish
   become: true
   file:
