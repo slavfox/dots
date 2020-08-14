@@ -6,7 +6,7 @@
 
 - name: Install nvim, python3-neovim, nodejs
   become: true
-  pacman:
+  dnf:
     name:
       - neovim
       - python3-neovim
