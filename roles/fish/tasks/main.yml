@@ -1,15 +1,16 @@
 - import_tasks: arch.yml
   when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
+- import_tasks: fedora.yml
+  when: ansible_facts['pkg_mgr'] == 'dnf'
+
 - name: Change shell to fish for current user
-  when: ansible_facts['distribution'] != "NixOS"
   become: true
   user:
     name: "{{ansible_user_id}}"
     shell: /usr/bin/fish
 
 - name: Change root shell to fish
-  when: ansible_facts['distribution'] != "NixOS"
   become: true
   user:
     name: root
@@ -50,7 +51,7 @@
   become: true
   command: fish -c fish_hybrid_key_bindings
 
-- name: Import root.config.fish
+- name: Import root config.fish
   become: true
   file:
     state: link

@@ -1,0 +1,16 @@
+- name: Install dependencies
+  become: true
+  dnf:
+    name:
+      - ruby
+      - ruby-devel
+      - libicu
+      - libicu-devel
+      - zlib
+      - zlib-devel
+
+- name: Install gollum
+  become: true
+  gem:
+    name:
+      - gollum

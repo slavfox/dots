@@ -1,0 +1,13 @@
+- name: Get rid of vim if exists
+  become: true
+  dnf:
+    name: vim
+    state: absent
+
+- name: Install nvim, python3-neovim, nodejs
+  become: true
+  pacman:
+    name:
+      - neovim
+      - python3-neovim
+      - nodejs

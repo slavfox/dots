@@ -4,6 +4,7 @@ set -gx GHCUP_INSTALL_BASE_PREFIX "~"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx SHELL (which fish)
 set -gx BROWSER /usr/bin/firefox
+set -gx TERM xterm
 
 # ipython
 set -gx PYTHONSTARTUP ~/dots/scripts/python_startup.py

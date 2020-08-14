@@ -1,0 +1,5 @@
+- name: Install hub
+  become: true
+  dnf:
+    name:
+      - hub
