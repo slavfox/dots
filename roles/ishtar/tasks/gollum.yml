@@ -9,8 +9,39 @@
       - zlib
       - zlib-devel
 
+- name: Make gollum directory
+  become: true
+  file:
+    path: /var/gollum
+    state: directory
+    owner: fox  # Run Gollum as `fox` since we autopush
+    group: fox
+
+- name: Link gollum config
+  file:
+    state: link
+    force: true
+    src: "{{dotfiles_dir}}/configs/ishtar/gollum/config.rb"
+    path: "/var/gollum/config.rb"
+
 - name: Install gollum
   become: true
   gem:
-    name:
-      - gollum
+    name: gollum
+
+- name: Install omnigollum
+  become: true
+  gem:
+    name: omnigollum
+
+- name: Make user systemd units directory
+  file:
+    path: "{{user_config_dir}}/systemd/user/"
+    state: directory
+
+- name: Link gollum service
+  file:
+    state: link
+    force: true
+    src: "{{dotfiles_dir}}/configs/ishtar/gollum/gollum.service"
+    path: "{{user_config_dir}}/systemd/user/gollum.service"
