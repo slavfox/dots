@@ -9,6 +9,12 @@
       - zlib
       - zlib-devel
       - make
+      - cmake
+      - gcc
+      - openssl
+      - libgit2
+      - libgit2-devel
+      - redhat-rpm-config
 
 - name: Make gollum directory
   become: true
