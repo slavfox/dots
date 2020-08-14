@@ -56,6 +56,13 @@
     path: "{{user_config_dir}}/systemd/user/"
     state: directory
 
+- name: Add nginx config for proxying Gollum
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/configs/ishtar/nginx/gollum.conf"
+    path: "/etc/nginx/conf.d/gollum.conf"
+
 - name: Link gollum service
   file:
     state: link

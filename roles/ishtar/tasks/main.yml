@@ -13,17 +13,41 @@
     name: httpd_can_network_connect
     state: yes
 
-- name: Add nginx config
+- name: Give up
+  become: true
+  selinux_permissive:
+    domain: httpd_t
+    permissive: yes
+
+
+- name: Make nginx log directory
+  become: true
+  file:
+    path: /var/log/nginx/
+    state: directory
+    owner: nginx
+    group: nginx
+    recursive: true
+
+- name: Copy nginx config
   become: true
   file:
     state: link
     force: true
     src: "{{dotfiles_dir}}/configs/ishtar/nginx/nginx.conf"
     path: "/etc/nginx/nginx.conf"
+    owner: nginx
+    group: nginx
 
 - name: Add nginx config for proxying Cockpit
   become: true
   file:
     state: link
     src: "{{dotfiles_dir}}/configs/ishtar/nginx/cockpit.conf"
-    path: "/etc/nginx/default.d/*.conf"
+    path: "/etc/nginx/conf.d/cockpit.conf"
+
+- name: Reload nginx
+  become: true
+  systemd:
+    name: nginx
+    state: reloaded

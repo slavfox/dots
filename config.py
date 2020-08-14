@@ -34,4 +34,4 @@ class Presets:
 class Hosts:
     cozyspace = Presets.cli_full
     inanna = Presets.cli_base
-    ishtar = inanna + ["ishtar"]
+    ishtar = Presets.cli_dev + ["ishtar"]
