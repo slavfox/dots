@@ -21,7 +21,7 @@ end
 
 options = {
   :providers => Proc.new do
-    provider :github, 'Client ID', 'Client Secret'
+    provider :github, ENV["GITHUB_CLIENT"], ENV["GITHUB_SECRET"]
   end,
   :dummy_auth => false,
   :protected_routes => ['/*'],

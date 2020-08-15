@@ -1,0 +1,7 @@
+The root certificate should live in /var/www/cert/ca.crt.
+
+Certs for individual domains should live in
+/var/nginx/certs/cockpit.ishtar.home.crt.
+
+Clone the Gollum wiki repo to /var/gollum/wiki. Set the GitHub client ID and
+secret in /var/gollum/gollum.env.
