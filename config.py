@@ -15,6 +15,7 @@ FISH = ["fish"]
 GIT = ["git"]
 NVIM = ["nvim"]
 RANGER = ["ranger"]
+REMOTE = ["bootstrap-remote"]
 
 
 # preset combinations
@@ -28,10 +29,11 @@ class Presets:
     cli_base = bootstrap + FISH + NVIM
     cli_dev = cli_base + GIT
     cli_full = cli_dev + RANGER
+    remote = REMOTE + cli_dev
 
 
 # hosts
 class Hosts:
     cozyspace = Presets.cli_full
-    inanna = Presets.cli_base
-    ishtar = Presets.cli_dev + ["ishtar"]
+    inanna = Presets.remote
+    ishtar = Presets.remote + ["ishtar"]

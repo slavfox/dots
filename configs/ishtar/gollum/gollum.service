@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/var/gollum/gem/bin/gollum "/var/gollum/wiki"
+ExecStart=/home/fox/bin/gollum --config /var/gollum/config.rb "/var/gollum/wiki"
 Restart=on-abort
 
 [Install]

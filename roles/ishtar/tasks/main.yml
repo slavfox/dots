@@ -27,7 +27,7 @@
     state: directory
     owner: nginx
     group: nginx
-    recursive: true
+    recurse: true
 
 - name: Copy nginx config
   become: true
@@ -45,6 +45,13 @@
     state: link
     src: "{{dotfiles_dir}}/configs/ishtar/nginx/cockpit.conf"
     path: "/etc/nginx/conf.d/cockpit.conf"
+
+- name: Add nginx config for serving the root cert
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/configs/ishtar/nginx/cacert.conf"
+    path: "/etc/nginx/conf.d/cacert.conf"
 
 - name: Reload nginx
   become: true
