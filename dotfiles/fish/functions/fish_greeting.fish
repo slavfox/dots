@@ -1,3 +1,7 @@
 function fish_greeting
-pfetch
+if type -q pfetch
+    pfetch
+else
+    uptime
+end
 end

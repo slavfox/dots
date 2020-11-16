@@ -44,6 +44,13 @@
     user_install: no
     install_dir: /var/gollum/gem
 
+- name: Install rack ssl middleware
+  become: true
+  gem:
+    name: rack-ssl
+    user_install: no
+    install_dir: /var/gollum/gem
+
 - name: Install omnigollum
   become: true
   gem:

@@ -1,6 +1,9 @@
 ## Omni Auth
 require 'omnigollum'
 require 'omniauth/strategies/github'
+require 'rack/ssl'
+
+use Rack::SSL
 
 wiki_options = {
   :live_preview => false,
