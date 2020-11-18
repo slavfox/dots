@@ -1,24 +1,27 @@
-- import_tasks: gollum.yml
+- import_tasks: trilium.yml
 
-- name: Install nginx
+- name: Install nginx, samba
   become: true
   dnf:
     name:
         - nginx
+        - samba
 
-- name: Fix httpd
+# ansible-galaxy collection install ansible.posix
+- name: permit traffic in default zone for smb service
   become: true
-  seboolean:
-    persistent: yes
-    name: httpd_can_network_connect
-    state: yes
-
-- name: Give up
+  ansible.posix.firewalld:
+    service: samba
+    permanent: yes
+    state: enabled
+    
+- name: Enable samba
   become: true
-  selinux_permissive:
-    domain: httpd_t
-    permissive: yes
-
+  systemd:
+    name: smb
+    state: started
+    enabled: yes
+  
 
 - name: Make nginx log directory
   become: true

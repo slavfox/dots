@@ -1,0 +1,13 @@
+[Unit]
+Description=Trilium wiki server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/var/trilium/trilium-linux-x64-server/trilium.sh
+WorkingDirectory=/var/trilium/trilium-linux-x64-server/
+Restart=on-abort
+EnvironmentFile=/var/trilium/trilium.env
+
+[Install]
+WantedBy=default.target

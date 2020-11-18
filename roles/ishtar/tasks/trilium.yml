@@ -1,0 +1,52 @@
+- name: Make trilium directory
+  become: true
+  file:
+    path: /var/trilium/
+    state: directory
+    
+- name: Get trilium
+  become: true
+  get_url:
+    url: https://github.com/zadam/trilium/releases/download/v0.45.4/trilium-linux-x64-server-0.45.4.tar.xz
+    dest: /var/trilium/trilium-linux-x64-server-0.45.4.tar.xz
+    
+- name: Extract trilium
+  become: true
+  unarchive:
+    src: /var/trilium/trilium-linux-x64-server-0.45.4.tar.xz
+    dest: /var/trilium/
+    remote_src: yes
+
+- name: Make user systemd units directory
+  file:
+    path: "{{user_config_dir}}/systemd/user/"
+    state: directory
+
+- name: Add nginx config for proxying Trilium
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/configs/ishtar/nginx/trilium.conf"
+    path: "/etc/nginx/conf.d/trilium.conf"
+
+- name: Link trilium envfile
+  become: true
+  file:
+    state: link
+    force: true
+    src: "{{dotfiles_dir}}/configs/ishtar/trilium/trilium.env"
+    path: "/var/trilium/trilium.env"
+
+- name: Link trilium service
+  file:
+    state: link
+    force: true
+    src: "{{dotfiles_dir}}/configs/ishtar/trilium/trilium.service"
+    path: "{{user_config_dir}}/systemd/user/trilium.service"
+
+- name: Start trilium service
+  systemd:
+    name: trilium 
+    scope: user
+    enabled: yes
+    state: started
