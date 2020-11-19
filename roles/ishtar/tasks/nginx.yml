@@ -1,0 +1,120 @@
+- name: Install nginx
+  become: true
+  dnf:
+    name:
+        - nginx  
+
+- name: Make nginx log directory
+  become: true
+  file:
+    path: /var/log/nginx/
+    state: directory
+    owner: nginx
+    group: nginx
+    recurse: true  
+
+- name: Make cert working directory
+  file:
+    path: /home/fox/certs/
+    state: directory
+    
+- name: Get mkcert
+  get_url:
+    url: https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-linux-amd64
+    dest: /home/fox/certs/mkcert
+    mode: u+rwx
+
+- name: Gen cockpit cert
+  command: 
+    chdir: /home/fox/certs
+    cmd: ./mkcert cockpit.ishtar.home
+
+- name: Gen wiki cert
+  command: 
+    chdir: /home/fox/certs
+    cmd: ./mkcert wiki.ishtar.home
+
+- name: Make cert directory
+  become: true
+  file:
+    path: /etc/nginx/certs/
+    state: directory
+
+- name: Make key directory
+  become: true
+  file:
+    path: /etc/nginx/keys/
+    state: directory
+
+- name: Copy CA cert
+  become: true
+  copy:
+    state: link
+    force: true
+    src: "/home/fox/.local/share/mkcert/rootCA.pem"
+    dest: "/var/www/cert/ca.crt"
+    owner: nginx
+    group: nginx
+    mode: u+r
+
+- name: Link cockpit cert
+  become: true
+  file:
+    state: link
+    force: true
+    src: "/home/fox/certs/cockpit.ishtar.home.pem"
+    path: "/etc/nginx/certs/cockpit.ishtar.home.crt"
+
+- name: Link cockpit key
+  become: true
+  file:
+    state: link
+    force: true
+    src: "/home/fox/certs/cockpit.ishtar.home-key.pem"
+    path: "/etc/nginx/keys/cockpit.ishtar.home.key"
+
+- name: Link wiki cert
+  become: true
+  file:
+    state: link
+    force: true
+    src: "/home/fox/certs/wiki.ishtar.home.pem"
+    path: "/etc/nginx/certs/wiki.ishtar.home.crt"
+
+- name: Link wiki key
+  become: true
+  file:
+    state: link
+    force: true
+    src: "/home/fox/certs/wiki.ishtar.home-key.pem"
+    path: "/etc/nginx/certs/wiki.ishtar.home.key"
+
+- name: Copy nginx config
+  become: true
+  file:
+    state: link
+    force: true
+    src: "{{dotfiles_dir}}/configs/ishtar/nginx/nginx.conf"
+    path: "/etc/nginx/nginx.conf"
+    owner: nginx
+    group: nginx
+
+- name: Add nginx config for proxying Cockpit
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/configs/ishtar/nginx/cockpit.conf"
+    path: "/etc/nginx/conf.d/cockpit.conf"
+
+- name: Add nginx config for serving the root cert
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/configs/ishtar/nginx/cacert.conf"
+    path: "/etc/nginx/conf.d/cacert.conf"
+
+- name: Reload nginx
+  become: true
+  systemd:
+    name: nginx
+    state: reloaded

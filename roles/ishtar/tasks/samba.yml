@@ -1,0 +1,21 @@
+- name: Install nginx, samba
+  become: true
+  dnf:
+    name:
+        - nginx
+        - samba
+
+# ansible-galaxy collection install ansible.posix
+- name: permit traffic in default zone for smb service
+  become: true
+  ansible.posix.firewalld:
+    service: samba
+    permanent: yes
+    state: enabled
+    
+- name: Enable samba
+  become: true
+  systemd:
+    name: smb
+    state: started
+    enabled: yes
