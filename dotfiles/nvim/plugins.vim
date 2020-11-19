@@ -92,7 +92,6 @@ call plug#begin('~/.vim/plugged')
   \ 'coc-json',
   \ 'coc-vimlsp', 
   \ 'coc-rls',
-  \ 'coc-rls',
   \ 'coc-python',
   \ 'coc-ultisnips'
   \ ]
