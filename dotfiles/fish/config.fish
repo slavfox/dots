@@ -27,7 +27,7 @@ add_to_path ~/.cabal/bin/
 add_to_path ~/.ghcup/bin/
 
 if type -q pyenv
-    status --is-interactive; and source (pyenv init -|psub)
+    status is-login; and pyenv init --path | source; and pyenv init - | source
 end
 
 source (starship init fish --print-full-init | psub)

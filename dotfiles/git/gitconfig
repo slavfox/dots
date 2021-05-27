@@ -84,3 +84,5 @@
 
 [include]
     path = ~/.git-user
+[init]
+	defaultBranch = main

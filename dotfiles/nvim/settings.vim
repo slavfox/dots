@@ -46,4 +46,6 @@ set tabstop=4
 set shiftwidth=4
 
 let g:python3_host_prog = '/usr/bin/python'
+" Never use filetype perl
+au FileType perl set filetype=prolog
 " vim: set ft=vim et sw=2 ts=2:
