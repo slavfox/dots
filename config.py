@@ -23,17 +23,20 @@ class Presets:
 
     if is_arch():
         bootstrap = ARCH
+        _desktop = ["arch-desktop"]
     else:
         bootstrap = []
+        _desktop = []
 
     cli_base = bootstrap + FISH + NVIM
     cli_dev = cli_base + GIT
     cli_full = cli_dev + RANGER
     remote = REMOTE + cli_dev
+    desktop = cli_full + _desktop
 
 
 # hosts
 class Hosts:
-    cozyspace = Presets.cli_full
-    inanna = Presets.remote
+    cozyspace = Presets.desktop
+    inanna = Presets.desktop
     ishtar = Presets.remote + ["ishtar"]

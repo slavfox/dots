@@ -14,7 +14,6 @@
   aur:
     name:
       - fisher
-      - virtualfish
       - starship
       - pfetch
     skip_installed: true
