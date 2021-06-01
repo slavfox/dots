@@ -1,0 +1,25 @@
+- name: Install desktop software
+  become: yes
+  pacman:
+    name:
+      - hexchat
+      - discord
+      - slack-desktop
+      - plank
+      - steam
+      - gimp
+      - gnome
+
+- name: Install aur software
+  become: true
+  become_user: aur_builder
+  aur:
+    name:
+      - jetbrains-toolbox
+      - spotify
+    skip_installed: true
+    
+- name: Enable gdm
+  ansible.builtin.systemd:
+    name: gdm
+    enabled: yes
