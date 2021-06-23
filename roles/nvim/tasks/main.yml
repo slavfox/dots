@@ -8,6 +8,7 @@
 
 - name: Symlink init.vim
   file:
+    force: true
     state: link
     src: "{{dotfiles_dir}}/dotfiles/nvim"
     path: "{{user_config_dir}}/nvim"

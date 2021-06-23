@@ -39,4 +39,5 @@ class Presets:
 class Hosts:
     cozyspace = Presets.desktop
     inanna = Presets.desktop
+    hq = Presets.desktop
     ishtar = Presets.remote + ["ishtar"]

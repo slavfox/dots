@@ -10,5 +10,5 @@
   pacman:
     name:
       - neovim
-      - pynvim
+      - python-pynvim
       - nodejs

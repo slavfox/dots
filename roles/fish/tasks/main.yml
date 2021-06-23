@@ -25,12 +25,14 @@
 
 - name: Import config.fish
   file:
+    force: true
     state: link
     src: "{{dotfiles_dir}}/dotfiles/fish/config.fish"
     path: "{{user_config_dir}}/fish/config.fish"
 
 - name: Import starship.toml
   file:
+    force: true
     state: link
     src: "{{dotfiles_dir}}/dotfiles/starship.toml"
     path: "{{user_config_dir}}/starship.toml"
@@ -42,6 +44,7 @@
 
 - name: Copy functions
   file:
+    force: true
     state: link
     src: "{{item}}"
     dest: "{{user_config_dir}}/fish/functions/{{item | basename}}"
