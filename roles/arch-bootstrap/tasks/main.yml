@@ -48,4 +48,3 @@
 - name: Set our preferred locale
   become: true
   command: "localectl set-locale LANG={{locale}}"
-

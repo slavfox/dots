@@ -18,6 +18,7 @@ set -gx FZF_CTRL_T_COMMAND 'ag --hidden --ignore .git -g ""'
 
 add_to_path ~/bin/ ~/dots/bin/ ~/.local/bin/
 add_to_path ~/.cargo/bin/
+add_to_path ~/.poetry/bin/
 
 set gembins ~/.gem/ruby/*/bin/
 add_to_path $gembins

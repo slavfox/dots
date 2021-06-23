@@ -1,7 +1,8 @@
 - import_tasks: arch.yml
   when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
 
-- name: Copy alacritty config
-  template:
-    src: alacritty.yml
-    dest: "{{user_config_dir}}/alacritty/"
+- name: Import alacritty.yml
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/alacritty/alacritty.yml"
+    path: "{{user_config_dir}}/alacritty/alacritty.yml"

@@ -3,10 +3,10 @@
     - include_role:
         - name: arch-bootstrap
       when: ansible_facts['os_family']|lower|replace(' ', '') == 'archlinux'
-    - {role: arch-bootstrap, tags: ['arch-bootstrap']}
-    - {role: git, tags: ['git']}
-    - {role: ranger, tags: ['ranger']}
-    - {role: fish, tags: ['fish']}
-    - {role: nvim, tags: ['nvim']}
-    - {role: alacritty, tags: ['alacritty']}
-    - {role: awesomewm, tags: ['awesome']}
+    - { role: arch-bootstrap, tags: ["arch-bootstrap"] }
+    - { role: git, tags: ["git"] }
+    - { role: ranger, tags: ["ranger"] }
+    - { role: fish, tags: ["fish"] }
+    - { role: nvim, tags: ["nvim"] }
+    - { role: alacritty, tags: ["alacritty"] }
+    - { role: awesomewm, tags: ["awesome"] }

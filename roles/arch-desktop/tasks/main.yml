@@ -1,3 +1,10 @@
+- name: Import neofetch config
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/neofetch"
+    path: "{{user_config_dir}}/neofetch"
+    force: true
+
 - name: Install desktop software
   become: yes
   pacman:
@@ -6,9 +13,11 @@
       - discord
       - slack-desktop
       - plank
-      - steam
       - gimp
       - gnome
+      - gnome-tweaks
+      - arc-gtk-theme
+      - neofetch
 
 - name: Install aur software
   become: true
@@ -17,8 +26,9 @@
     name:
       - jetbrains-toolbox
       - spotify
+      - numix-square-icon-theme
     skip_installed: true
-    
+
 - name: Enable gdm
   ansible.builtin.systemd:
     name: gdm

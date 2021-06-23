@@ -2,7 +2,7 @@
   become: true
   dnf:
     name:
-        - nginx  
+      - nginx
 
 - name: Make nginx log directory
   become: true
@@ -11,13 +11,13 @@
     state: directory
     owner: nginx
     group: nginx
-    recurse: true  
+    recurse: true
 
 - name: Make cert working directory
   file:
     path: /home/fox/certs/
     state: directory
-    
+
 - name: Get mkcert
   get_url:
     url: https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-linux-amd64
@@ -25,12 +25,12 @@
     mode: u+rwx
 
 - name: Gen cockpit cert
-  command: 
+  command:
     chdir: /home/fox/certs
     cmd: ./mkcert cockpit.ishtar.home
 
 - name: Gen wiki cert
-  command: 
+  command:
     chdir: /home/fox/certs
     cmd: ./mkcert wiki.ishtar.home
 

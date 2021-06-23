@@ -3,13 +3,13 @@
   file:
     path: /var/trilium/
     state: directory
-    
+
 - name: Get trilium
   become: true
   get_url:
     url: https://github.com/zadam/trilium/releases/download/v0.45.4/trilium-linux-x64-server-0.45.4.tar.xz
     dest: /var/trilium/trilium-linux-x64-server-0.45.4.tar.xz
-    
+
 - name: Extract trilium
   become: true
   unarchive:
@@ -46,7 +46,7 @@
 
 - name: Start trilium service
   systemd:
-    name: trilium 
+    name: trilium
     scope: user
     enabled: yes
     state: started

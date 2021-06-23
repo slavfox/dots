@@ -23,10 +23,10 @@ class Presets:
 
     if is_arch():
         bootstrap = ARCH
-        _desktop = ["arch-desktop"]
+        _desktop = ["arch-desktop", "alacritty"]
     else:
         bootstrap = []
-        _desktop = []
+        _desktop = ["alacritty"]
 
     cli_base = bootstrap + FISH + NVIM
     cli_dev = cli_base + GIT
