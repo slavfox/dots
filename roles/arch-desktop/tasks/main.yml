@@ -33,3 +33,10 @@
   ansible.builtin.systemd:
     name: gdm
     enabled: yes
+    
+- name: Link .ideavimrc
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/.ideavimrc"
+    path: "{{user_home}}/.ideavimrc"
+    force: true

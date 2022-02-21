@@ -20,15 +20,17 @@ add_to_path ~/bin/ ~/dots/bin/ ~/.local/bin/
 add_to_path ~/.cargo/bin/
 add_to_path ~/.poetry/bin/
 
-set gembins ~/.gem/ruby/*/bin/
+set gembins ~/.gem/ruby/*/bin/ ~/.local/share/gem/ruby/*/bin/
 add_to_path $gembins
 
 add_to_path ~/.npm-global/bin/
 add_to_path ~/.cabal/bin/
 add_to_path ~/.ghcup/bin/
+add_to_path ~/.pyenv/bin/
 
 if type -q pyenv
-    status is-login; and pyenv init --path | source; and pyenv init - | source
+    status is-login; and pyenv init --path | source
+    status is-interactive; and pyenv init - | source
 end
 
 source (starship init fish --print-full-init | psub)
