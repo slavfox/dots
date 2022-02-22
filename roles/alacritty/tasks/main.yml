@@ -4,5 +4,6 @@
 - name: Import alacritty.yml
   file:
     state: link
+    force: true
     src: "{{dotfiles_dir}}/dotfiles/alacritty/alacritty.yml"
-    path: "{{user_config_dir}}/alacritty/alacritty.yml"
+    path: "{{user_config_dir}}/alacritty.yml"

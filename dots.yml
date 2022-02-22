@@ -10,3 +10,4 @@
     - { role: nvim, tags: ["nvim"] }
     - { role: alacritty, tags: ["alacritty"] }
     - { role: awesomewm, tags: ["awesome"] }
+    - { role: arch-desktop, tags: ["arch-desktop"] }

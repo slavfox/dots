@@ -3,6 +3,17 @@ def is_arch():
         with open("/etc/os-release") as f:
             for line in f:
                 if line.startswith("ID="):
+                    if "arch" in line or "endeavouros" in line:
+                        return True
+                    return False
+    except OSError:
+        return False
+        
+def is_fedora():
+    try:
+        with open("/etc/os-release") as f:
+            for line in f:
+                if line.startswith("ID="):
                     if "arch" in line:
                         return True
                     return False
@@ -10,6 +21,7 @@ def is_arch():
         return False
 
 ARCH = ["arch-bootstrap"]
+FEDORA = []
 AWESOME = ["awesomewm"]
 FISH = ["fish"]
 GIT = ["git"]
@@ -24,6 +36,9 @@ class Presets:
     if is_arch():
         bootstrap = ARCH
         _desktop = ["arch-desktop", "alacritty"]
+    elif is_fedora():
+        bootstrap = FEDORA
+        _desktop = ["fedora-desktop", "alacritty"] 
     else:
         bootstrap = []
         _desktop = ["alacritty"]
@@ -41,3 +56,4 @@ class Hosts:
     inanna = Presets.desktop
     hq = Presets.desktop
     ishtar = Presets.remote + ["ishtar"]
+    fedora = Presets.desktop

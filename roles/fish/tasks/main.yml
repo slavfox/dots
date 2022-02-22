@@ -16,13 +16,6 @@
     name: root
     shell: /usr/bin/fish
 
-- name: Set hybrid keybindings for current user
-  command: fish -c fish_hybrid_key_bindings
-
-- name: Set hybrid keybindings for root
-  become: true
-  command: fish -c fish_hybrid_key_bindings
-
 - name: Import config.fish
   file:
     force: true
@@ -53,10 +46,18 @@
 
 - name: Set colors
   command: "fish {{dotfiles_dir}}/scripts/set_fish_colors.fish"
+
+- name: Make root config dir
+  become: true
+  file:
+    state: directory
+    path: "/root/.config/fish/"
+
 - name: Import root config.fish
   become: true
   file:
     state: link
+    force: true
     src: "{{dotfiles_dir}}/dotfiles/fish/root.config.fish"
     path: "/root/.config/fish/config.fish"
 
@@ -64,5 +65,6 @@
   become: true
   file:
     state: link
+    force: true
     src: "{{dotfiles_dir}}/dotfiles/starship.toml"
     path: "/root/.config/starship.toml"

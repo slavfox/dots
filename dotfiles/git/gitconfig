@@ -86,3 +86,6 @@
     path = ~/.git-user
 [init]
 	defaultBranch = main
+[user]
+	name = Slavfox
+	email = slavfoxman@gmail.com

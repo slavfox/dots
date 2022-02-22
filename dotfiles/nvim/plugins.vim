@@ -99,7 +99,6 @@ call plug#begin('~/.vim/plugged')
 
 " === Misc ===
   " Time tracking
-  Plug 'wakatime/vim-wakatime'
 
   " Notes
   if !empty(glob('~/.config/nvim/vimwiki_index.vim'))

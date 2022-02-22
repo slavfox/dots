@@ -5,23 +5,18 @@
     path: "{{user_config_dir}}/neofetch"
     force: true
 
-- name: Remove EndeavourOS theme, if exists
-  become: yes
-  pacman:
-    name: arc-gtk-theme-eos
-    state: absent
-
 - name: Install desktop software
   become: yes
   pacman:
     name:
       - hexchat
       - discord
+      - slack-desktop
       - plank
       - gimp
       - gnome
       - gnome-tweaks
-      - arc-gtk-theme-eos
+      - arc-gtk-theme
       - neofetch
 
 - name: Install aur software
@@ -32,17 +27,9 @@
       - jetbrains-toolbox
       - spotify
       - numix-square-icon-theme
-      - slack-desktop
     skip_installed: true
 
 - name: Enable gdm
   ansible.builtin.systemd:
     name: gdm
     enabled: yes
-    
-- name: Link .ideavimrc
-  file:
-    state: link
-    src: "{{dotfiles_dir}}/dotfiles/.ideavimrc"
-    path: "{{user_home}}/.ideavimrc"
-    force: true
