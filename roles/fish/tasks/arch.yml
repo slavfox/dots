@@ -1,4 +1,4 @@
-- name: Install fish, hub, sysstat, fortune-mod, inetutils, pyenv
+- name: Install fish, hub, sysstat, fortune-mod, inetutils, pyenv, pkgfile
   become: true
   pacman:
     name:
@@ -7,6 +7,11 @@
       - fortune-mod
       - inetutils
       - pyenv
+      - pkgfile
+
+- name: Update pkgfile db
+  become: true
+  command: pkgfile --update
 
 - name: Install fisher, virtualfish, starship, pfetch
   become: true

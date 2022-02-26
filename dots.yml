@@ -11,3 +11,4 @@
     - { role: alacritty, tags: ["alacritty"] }
     - { role: awesomewm, tags: ["awesome"] }
     - { role: arch-desktop, tags: ["arch-desktop"] }
+    - { role: logiops, tags: ["logiops"] }

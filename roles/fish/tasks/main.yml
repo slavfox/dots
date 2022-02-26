@@ -68,3 +68,13 @@
     force: true
     src: "{{dotfiles_dir}}/dotfiles/starship.toml"
     path: "/root/.config/starship.toml"
+
+- name: Import root functions
+  become: true
+  file:
+    force: true
+    state: link
+    src: "{{item}}"
+    dest: "/root/.config/fish/functions/{{item | basename}}"
+  with_fileglob:
+    - "{{dotfiles_dir}}/dotfiles/fish/functions/*.fish"

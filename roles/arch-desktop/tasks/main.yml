@@ -15,13 +15,12 @@
   become: yes
   pacman:
     name:
-      - hexchat
       - discord
       - plank
       - gimp
       - gnome
       - gnome-tweaks
-      - arc-gtk-theme-eos
+      - arc-gtk-theme
       - neofetch
 
 - name: Install aur software
@@ -30,16 +29,14 @@
   aur:
     name:
       - jetbrains-toolbox
-      - spotify
       - numix-square-icon-theme
-      - slack-desktop
     skip_installed: true
 
 - name: Enable gdm
   ansible.builtin.systemd:
     name: gdm
     enabled: yes
-    
+
 - name: Link .ideavimrc
   file:
     state: link

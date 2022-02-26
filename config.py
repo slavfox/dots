@@ -35,19 +35,19 @@ class Presets:
 
     if is_arch():
         bootstrap = ARCH
-        _desktop = ["arch-desktop", "alacritty"]
+        _desktop_extra = ["arch-desktop"]
     elif is_fedora():
         bootstrap = FEDORA
-        _desktop = ["fedora-desktop", "alacritty"] 
+        _desktop_extra = ["fedora-desktop"] 
     else:
         bootstrap = []
-        _desktop = ["alacritty"]
+        _desktop_extra = []
 
     cli_base = bootstrap + FISH + NVIM
     cli_dev = cli_base + GIT
     cli_full = cli_dev + RANGER
     remote = REMOTE + cli_dev
-    desktop = cli_full + _desktop
+    desktop = cli_full + _desktop_extra + ["alacritty", "logiops"]
 
 
 # hosts

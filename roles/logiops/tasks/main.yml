@@ -1,0 +1,15 @@
+- name: Install logiops
+  become: true
+  become_user: aur_builder
+  aur:
+    name:
+      - logiops
+    skip_installed: true
+
+- name: Link logid.cfg
+  become: true
+  file:
+    state: link
+    src: "{{dotfiles_dir}}/dotfiles/logid.cfg"
+    path: "/etc/logid.cfg"
+    force: true
