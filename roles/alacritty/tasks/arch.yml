@@ -3,3 +3,9 @@
   pacman:
     name:
       - alacritty
+
+- name: Uninstall gnome-terminal, if present
+  become: true
+  pacman:
+    name: gnome-terminal
+    state: absent
