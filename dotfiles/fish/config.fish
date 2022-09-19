@@ -16,6 +16,8 @@ set -gx VIRTUALFISH_DEFAULT_PYTHON "python"
 
 set -gx FZF_CTRL_T_COMMAND 'ag --hidden --ignore .git -g ""'
 
+set -gx PYENV_ROOT ~/.pyenv
+
 add_to_path ~/bin/ ~/dots/bin/ ~/.local/bin/
 add_to_path ~/.cargo/bin/
 add_to_path ~/.poetry/bin/
@@ -28,10 +30,8 @@ add_to_path ~/.cabal/bin/
 add_to_path ~/.ghcup/bin/
 add_to_path ~/.pyenv/bin/
 
-if type -q pyenv
-    status is-login; and pyenv init --path | source
-    status is-interactive; and pyenv init - | source
-end
+pyenv init - | source
+pyenv init --path | source
 
 source (starship init fish --print-full-init | psub)
 
