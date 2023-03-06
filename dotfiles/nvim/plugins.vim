@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plugged')
   
   " Colors
   Plug 'joshdick/onedark.vim'
+  Plug 'dracula/vim',{'as':'dracula'}
 
   " Airline
   Plug 'vim-airline/vim-airline'

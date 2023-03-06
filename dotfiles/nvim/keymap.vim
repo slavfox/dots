@@ -8,6 +8,8 @@ vnoremap j gj
 vnoremap k gk
 vnoremap gj j
 vnoremap gk k
+nnoremap A g$i
+vnoremap A g$i
 
 " Focus or create a split in given direction
 function! WinMove(key)
